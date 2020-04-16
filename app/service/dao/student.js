@@ -20,14 +20,13 @@ class StudentService extends Service {
           model: ctx.model.StudentInfo,
           attributes: [ 'age', 'sex' ],
         }],
-        attributes: [ 'id', 'student_name', 'student_type' ],
-        logging: true,
+        attributes: [ 'id', 'student_name', 'student_type', 'created_at' ],
       });
 
       const newStudentArray = studentArray.map(item => {
-        const { id, student_name, student_type, student_info: { sex, age } } = item.dataValues;
+        const { id, student_name, student_type, created_at, student_info: { sex, age } } = item.dataValues;
 
-        return { id, student_name, student_type, sex, age };
+        return { id, student_name, student_type, sex, age, created_at };
       });
       return newStudentArray;
     } catch (error) {

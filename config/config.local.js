@@ -2,9 +2,9 @@
 
 'use strict';
 
-module.exports = appInfo => {
+module.exports = () => {
   const config = {};
-
+  config.sqlMaxTime = 500;
   // mysql 配置
   config.sequelize = {
     dialect: 'mysql', // 数据库类型
@@ -13,13 +13,6 @@ module.exports = appInfo => {
     database: 'egg_sequelize_test_demo',
     username: 'test',
     password: '123456',
-    logging: (sql, timing) => {
-      // 每次日志输出都会调用的函数，可以在此进行重写
-      if (typeof timing === 'number' && timing > 500) {
-        // 记录执行时间超过阈值的sql
-        appInfo.logger.info(`[egg-sequelize](${timing} ms) ${sql}`);
-      }
-    },
     timezone: '+08:00', // 将日期从数据库转换为JavaScript日期时使用的时区。
     benchmark: true, // 将查询执行时间（以毫秒为单位）作为日志记录功能的第二个参数(options.logging)。
     define: {

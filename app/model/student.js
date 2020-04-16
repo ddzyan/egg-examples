@@ -35,6 +35,7 @@ module.exports = app => {
       created_at: {
         type: Sequelize.DATE,
         get() {
+          // TODO get created_at 无效
           return moment(this.getDataValue('created_at')).format('YYYY-MM-DD HH:mm:ss');
         },
       },

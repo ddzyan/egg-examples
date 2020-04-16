@@ -1,5 +1,10 @@
 'use strict';
 
+
+/*
+app.js 生命周期
+*/
+
 class AppBootHook {
   constructor(app) {
     this.app = app;

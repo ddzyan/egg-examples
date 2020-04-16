@@ -6,5 +6,6 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
-  router.get('/student/all', controller.student.getALLStudentInfo);
+  router.get('/student/all', controller.student.getAllStudentInfo);
+  router.post('/student/add', controller.student.add);
 };

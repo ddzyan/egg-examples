@@ -34,13 +34,13 @@ module.exports = app => {
       },
       created_at: {
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
         get() {
           // TODO get created_at 无效
           return moment(this.getDataValue('created_at')).format('YYYY-MM-DD HH:mm:ss');
         },
       },
-    }, {
-      timestamps: false,
+      updated_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
     }
   );
 
@@ -48,7 +48,7 @@ module.exports = app => {
   Student.associate = () => {
     // app.model.Student.belongsTo(app.model.StudentInfo, { foreignKey: 'sid' });
     // 由于是将student的主键，保存到studentInfo中，所以要用hasOne，foreignKey是添加到studentInfo中的外键名称
-    app.model.Student.hasOne(app.model.StudentInfo, { foreignKey: 'sid' });
+    app.model.Student.hasOne(app.model.Card, { foreignKey: 'sid' });
   };
 
   return Student;

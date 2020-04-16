@@ -25,8 +25,8 @@ module.exports = {
         default: 1,
         comment: '状态值，1启用 0 关闭',
       },
-      created_at: Sequelize.DATE,
-      updated_at: Sequelize.DATE,
+      created_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+      updated_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
     });
   },
 

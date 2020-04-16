@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('student_info', {
+    await queryInterface.createTable('card', {
       id: {
         type: Sequelize.BIGINT(11).UNSIGNED,
         primaryKey: true,
@@ -14,23 +14,23 @@ module.exports = {
         allowNull: false,
         comment: '学生Id',
       },
-      age: {
-        type: Sequelize.INTEGER.UNSIGNED,
+      card_name: {
+        type: Sequelize.STRING,
         allowNull: false,
-        comment: '年龄',
+        comment: '卡片名称',
       },
-      sex: {
+      card_level: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         default: 1,
-        comment: '性别,1男，0女',
+        comment: '卡片等级:1银卡，2金卡',
       },
-      created_at: Sequelize.DATE,
-      updated_at: Sequelize.DATE,
+      created_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+      updated_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
     });
   },
 
   down: async queryInterface => {
-    await queryInterface.dropTable('student_info');
+    await queryInterface.dropTable('card');
   },
 };

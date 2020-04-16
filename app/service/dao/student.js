@@ -17,22 +17,41 @@ class StudentService extends Service {
           status: true,
         },
         include: [{
-          model: ctx.model.StudentInfo,
-          attributes: [ 'age', 'sex' ],
+          model: ctx.model.Card,
+          attributes: [ 'card_name', 'card_level' ],
         }],
         attributes: [ 'id', 'student_name', 'student_type', 'created_at' ],
       });
 
       const newStudentArray = studentArray.map(item => {
-        const { id, student_name, student_type, created_at, student_info: { sex, age } } = item.dataValues;
+        const { id, student_name, student_type, created_at, card: { card_name, card_level } } = item.dataValues;
 
-        return { id, student_name, student_type, sex, age, created_at };
+        return { id, student_name, student_type, card_name, card_level, created_at };
       });
       return newStudentArray;
     } catch (error) {
       console.error('getStudentInfo', error);
       throw error;
     }
+  }
+
+  async add({ student_name, student_type }, t) {
+    const res = await this.model.create({
+      student_name, student_type, status: 1,
+    }, {
+      transaction: t,
+    });
+    return res;
+  }
+
+  async getStudentByStudentName(student_name) {
+    const res = await this.model.findOne({
+      where: {
+        student_name,
+      },
+    });
+
+    return res;
   }
 }
 

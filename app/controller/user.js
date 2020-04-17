@@ -6,23 +6,31 @@ class UserController extends Controller {
   async saveUser() {
     const { ctx } = this;
     const params = ctx.request.body;
-    const result = await ctx.service.user.saveUser(params);
-    ctx.body = result;
+    const res = await ctx.service.user.saveUser(params);
+    ctx.body = res;
   }
 
   async getUser() {
     const { ctx } = this;
     const { username } = ctx.query;
-    const result = await ctx.service.user.getUser(username);
-    ctx.body = result;
+    const res = await ctx.service.user.getUser(username);
+    ctx.body = res;
   }
 
   // 重置用户
   async resetUser() {
     const { ctx } = this;
     const { username } = ctx.query;
-    const result = await ctx.service.user.getUser(username);
-    ctx.body = result;
+    const res = await ctx.service.user.getUser(username);
+    ctx.body = res;
+  }
+
+  // 给用户加钱
+  async setUserMoney() {
+    const { ctx } = this;
+    const { username, money } = ctx.request.body;
+    const res = await ctx.service.user.setUserMoney(username, money);
+    ctx.body = res;
   }
 }
 

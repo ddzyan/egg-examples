@@ -4,6 +4,7 @@ module.exports = () => {
   return async function requestHandle(ctx, next) {
     try {
       await next();
+      // koa 底层只要对body设置了值，则status就等于200
       const { status, body } = ctx;
       if (Object.is(status, 200)) {
         ctx.body = {

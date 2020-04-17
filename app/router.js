@@ -11,4 +11,5 @@ module.exports = app => {
 
   router.post('/saveUser', controller.user.saveUser);
   router.get('/getUser', controller.user.getUser);
+  router.post('/setUserMoney', controller.user.setUserMoney);
 };

@@ -25,8 +25,14 @@ module.exports = {
         default: 1,
         comment: '卡片等级:1银卡，2金卡',
       },
-      created_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
-      updated_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+      create_time: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      update_time: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     });
   },
 

@@ -1,4 +1,5 @@
 'use strict';
+const moment = require('moment');
 
 module.exports = app => {
   const { Sequelize } = app;
@@ -27,8 +28,18 @@ module.exports = app => {
       get() {
         return this.getDataValue('card_level') === 1 ? '银卡' : '金卡';
       },
-      created_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
-      updated_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+      create_time: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        get() {
+          // TODO get created_at 无效
+          return moment(this.getDataValue('create_time')).format('YYYY-MM-DD HH:mm:ss');
+        },
+      },
+      update_time: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     },
   });
 

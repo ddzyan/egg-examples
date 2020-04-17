@@ -32,15 +32,18 @@ module.exports = app => {
         default: 1,
         comment: '状态值:1启用 0 关闭',
       },
-      created_at: {
+      create_time: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         get() {
-          // TODO get created_at 无效
-          return moment(this.getDataValue('created_at')).format('YYYY-MM-DD HH:mm:ss');
+          // TODO get create_time 无效
+          return moment(this.getDataValue('create_time')).format('YYYY-MM-DD HH:mm:ss');
         },
       },
-      updated_at: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+      update_time: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     }
   );
 

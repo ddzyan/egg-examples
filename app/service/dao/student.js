@@ -20,13 +20,13 @@ class StudentService extends Service {
           model: ctx.model.Card,
           attributes: [ 'card_name', 'card_level' ],
         }],
-        attributes: [ 'id', 'student_name', 'student_type', 'created_at' ],
+        attributes: [ 'id', 'student_name', 'student_type', 'create_time' ],
       });
 
       const newStudentArray = studentArray.map(item => {
-        const { id, student_name, student_type, created_at, card: { card_name, card_level } } = item.dataValues;
+        const { id, student_name, student_type, create_time, card: { card_name, card_level } } = item.dataValues;
 
-        return { id, student_name, student_type, card_name, card_level, created_at };
+        return { id, student_name, student_type, card_name, card_level, create_time };
       });
       return newStudentArray;
     } catch (error) {

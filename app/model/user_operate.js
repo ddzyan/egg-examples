@@ -1,9 +1,10 @@
 'use strict';
 const moment = require('moment');
 
+// 用户操作表
 module.exports = app => {
   const { Sequelize } = app;
-  const Card = app.model.define('card', {
+  const UserOperate = app.model.define('user_operate', {
     id: {
       type: Sequelize.BIGINT(11).UNSIGNED,
       primaryKey: true,
@@ -15,16 +16,16 @@ module.exports = app => {
       allowNull: false,
       comment: '学生Id',
     },
-    card_name: {
+    keyWord: {
       type: Sequelize.STRING,
       allowNull: false,
-      comment: '卡片名称',
+      comment: '关键字',
     },
-    card_level: {
+    level: {
       type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
       default: 1,
-      comment: '卡片等级:1银卡，2金卡',
+      comment: '关键字等级:1普通，2严重，3灾难',
       get() {
         return this.getDataValue('card_level') === 1 ? '银卡' : '金卡';
       },
@@ -43,8 +44,8 @@ module.exports = app => {
     },
   });
 
-  Card.associate = () => {
+  UserOperate.associate = () => {
 
   };
-  return Card;
+  return UserOperate;
 };

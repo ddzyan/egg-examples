@@ -10,9 +10,8 @@ class StudentController extends Controller {
     this.ctx.body = res;
   }
 
-
   // method POST 添加学生
-  async add() {
+  async addStudent() {
     const { ctx } = this;
     const { student_name, student_type, card_name, card_level } = ctx.request.body;
     const res = await ctx.service.student.addStudent({ student_name, student_type, card_name, card_level });

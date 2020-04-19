@@ -7,7 +7,7 @@ module.exports = () => {
   config.sqlMaxTime = 500;
   // mysql 配置
   config.sequelize = {
-    host: '192.168.31.141',
+    host: '127.0.0.1',
     port: 3306,
     username: 'test',
     password: '123456',
@@ -23,7 +23,7 @@ module.exports = () => {
   config.redis = {
     client: {
       port: 6379, // Redis port
-      host: '127.0.0.1', // Redis host
+      host: '192.168.100.117', // Redis host
       password: '',
       db: 0,
     },

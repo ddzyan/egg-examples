@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('card', {
+    await queryInterface.createTable('user_operate', {
       id: {
         type: Sequelize.BIGINT(11).UNSIGNED,
         primaryKey: true,
@@ -14,16 +14,16 @@ module.exports = {
         allowNull: false,
         comment: '学生Id',
       },
-      card_name: {
+      keyWord: {
         type: Sequelize.STRING,
         allowNull: false,
-        comment: '卡片名称',
+        comment: '关键字',
       },
-      card_level: {
+      level: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         default: 1,
-        comment: '卡片等级:1银卡，2金卡',
+        comment: '关键字等级:1普通，2严重，3灾难',
       },
       create_time: {
         type: Sequelize.DATE,
@@ -37,6 +37,6 @@ module.exports = {
   },
 
   down: async queryInterface => {
-    await queryInterface.dropTable('card');
+    await queryInterface.dropTable('user_operate');
   },
 };

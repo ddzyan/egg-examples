@@ -3,7 +3,7 @@
     "username": "root",
     "password": "123456",
     "database": "egg_sequelize_test_demo",
-    "host": "192.168.31.141",
+    "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
   },

@@ -2,22 +2,22 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('student', {
+    await queryInterface.createTable('user', {
       id: {
         type: Sequelize.BIGINT(11).UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
         comment: '主键',
       },
-      student_name: {
+      username: {
         type: Sequelize.STRING(10),
         allowNull: false,
-        comment: '学生名称',
+        comment: '用户名称',
       },
-      student_type: {
+      type: {
         type: Sequelize.INTEGER(1).UNSIGNED,
         allowNull: false,
-        comment: '学生类型,1小学生，2中学生',
+        comment: '类型:1小学生，2中学生',
       },
       status: {
         type: Sequelize.BOOLEAN,
@@ -37,6 +37,6 @@ module.exports = {
   },
 
   down: async queryInterface => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('user');
   },
 };

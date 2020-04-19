@@ -2,10 +2,10 @@
 
 const { Service } = require('egg');
 
-class StudentService extends Service {
+class UserService extends Service {
   constructor(ctx) {
     super(ctx);
-    this.model = ctx.model.Student;
+    this.model = ctx.model.User;
   }
 
   // 获取学生所有信息，关联查询student和studentInfo
@@ -55,4 +55,4 @@ class StudentService extends Service {
   }
 }
 
-module.exports = StudentService;
+module.exports = UserService;

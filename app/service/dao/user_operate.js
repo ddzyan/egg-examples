@@ -2,10 +2,10 @@
 
 const Service = require('egg').Service;
 
-class CardService extends Service {
+class UserOperateService extends Service {
   constructor(ctx) {
     super(ctx);
-    this.model = ctx.model.Card;
+    this.model = ctx.model.UserOperate;
   }
 
   async add({ card_name, card_level, sid }, t) {
@@ -18,4 +18,4 @@ class CardService extends Service {
   }
 }
 
-module.exports = CardService;
+module.exports = UserOperateService;

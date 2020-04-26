@@ -16,7 +16,7 @@ module.exports = () => {
         };
       } else {
         ctx.body = {
-          data: null,
+          data: {},
           message: '404',
           success: false,
           code: 0,
@@ -24,7 +24,7 @@ module.exports = () => {
       }
     } catch (error) {
       ctx.body = {
-        data: null,
+        data: {},
         message: '系统错误',
         success: false,
         code: 2,

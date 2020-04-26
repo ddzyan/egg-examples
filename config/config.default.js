@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1587004221316_6644';
 
   // add your middleware config here
-  config.middleware = [ 'requestHandle' ];
+  config.middleware = [ 'requestHandle', 'formatRes' ];
 
   config.sequelize = {
     dialect: 'mysql', // 数据库类型
@@ -47,6 +47,10 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
+  };
+
+  config.logger = {
+    consoleLevel: 'DEBUG',
   };
 
   // add your user config here

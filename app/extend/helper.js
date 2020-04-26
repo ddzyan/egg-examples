@@ -3,6 +3,12 @@
 // helper 扩张
 
 module.exports = {
+
+  // 返回一个随机数
+  getRandom() {
+    return Math.floor(Math.random() * 100000 + 1);
+  },
+
   /**
   * @description redis加锁
   * @param {string} key 加锁key

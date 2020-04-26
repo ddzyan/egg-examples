@@ -1,5 +1,5 @@
 'use strict';
-
+// redis的相关操作，涉及到锁
 const { Service } = require('egg');
 
 const DEFAULT_REDIS_USER = 'demo:user';
@@ -15,6 +15,7 @@ class UserService extends Service {
    * @param {Object} params 用户对象
    * @param {string} params.username 用户名称
    * @param {number} params.sex 用户年龄
+   * @return {Promise<object>} 操作结果
    */
   async saveUser(params) {
     try {
@@ -39,7 +40,7 @@ class UserService extends Service {
   /**
    * @description 获得用户信息
    * @param {string} username 用户名称
-   * @return {Object} 用户信息
+   * @return {Promise<Object>} 用户信息
    */
   async getUser(username) {
     const userExist = await this.redis.hget(DEFAULT_REDIS_USER, username);
@@ -47,7 +48,8 @@ class UserService extends Service {
       throw new Error('用户不存在');
     }
 
-    return JSON.parse(userExist);
+    const res = JSON.parse(userExist);
+    return res;
   }
 
 

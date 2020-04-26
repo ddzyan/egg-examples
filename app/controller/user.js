@@ -3,6 +3,7 @@
 const Controller = require('egg').Controller;
 
 class UserController extends Controller {
+  // 保存用户
   async saveUser() {
     const { ctx } = this;
     const params = ctx.request.body;
@@ -10,6 +11,7 @@ class UserController extends Controller {
     ctx.body = res;
   }
 
+  // 获取用户
   async getUser() {
     const { ctx } = this;
     const { username } = ctx.query;

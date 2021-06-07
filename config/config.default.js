@@ -10,7 +10,7 @@ module.exports = appInfo => {
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = exports = {};
+  const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1587004221316_6644';
@@ -22,9 +22,9 @@ module.exports = appInfo => {
     dialect: 'mysql', // 数据库类型
     host: '127.0.0.1',
     port: 3306,
-    database: 'egg_sequelize_test_demo',
-    username: '',
-    password: '',
+    database: 'demo',
+    username: 'root',
+    password: '123456',
     timezone: '+08:00', // 将日期从数据库转换为JavaScript日期时使用的时区。
     benchmark: true, // 将查询执行时间（以毫秒为单位）作为日志记录功能的第二个参数(options.logging)。
     define: {
@@ -37,7 +37,8 @@ module.exports = appInfo => {
         collate: 'utf8mb4_general_ci', // 排序方式 general_ci 不区分大小写
       },
     },
-    pool: {// 连接池属性
+    pool: {
+      // 连接池属性
       max: 5, // 最大连接数
       min: 0, // 最小连接数
     },

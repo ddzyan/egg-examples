@@ -1,17 +1,17 @@
-'use strict'
+'use strict';
 
-const BaseDaoService = require('./base_dao')
+const BaseDaoService = require('./base_dao');
 
 class UserService extends BaseDaoService {
   constructor(ctx) {
-    super(ctx)
-    this.model = ctx.model.User
+    super(ctx);
+    this.model = ctx.model.User;
   }
 
   // 获取学生所有信息，关联查询student和studentInfo
   async getAllStudent() {
     try {
-      const { ctx } = this
+      const { ctx } = this;
       const studentArray = await this.model.findAll({
         where: {
           status: true,
@@ -19,11 +19,11 @@ class UserService extends BaseDaoService {
         include: [
           {
             model: ctx.model.Card,
-            attributes: ['card_name', 'card_level'],
+            attributes: [ 'card_name', 'card_level' ],
           },
         ],
-        attributes: ['id', 'student_name', 'student_type', 'create_time'],
-      })
+        attributes: [ 'id', 'student_name', 'student_type', 'create_time' ],
+      });
 
       const newStudentArray = studentArray.map(item => {
         const {
@@ -32,14 +32,14 @@ class UserService extends BaseDaoService {
           student_type,
           create_time,
           card: { card_name, card_level },
-        } = item.dataValues
+        } = item.dataValues;
 
-        return { id, student_name, student_type, card_name, card_level, create_time }
-      })
-      return newStudentArray
+        return { id, student_name, student_type, card_name, card_level, create_time };
+      });
+      return newStudentArray;
     } catch (error) {
-      console.error('getStudentInfo', error)
-      throw error
+      console.error('getStudentInfo', error);
+      throw error;
     }
   }
 
@@ -48,10 +48,10 @@ class UserService extends BaseDaoService {
       where: {
         student_name,
       },
-    })
+    });
 
-    return res
+    return res;
   }
 }
 
-module.exports = UserService
+module.exports = UserService;

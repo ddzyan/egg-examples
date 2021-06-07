@@ -1,9 +1,9 @@
-'use strict'
-const moment = require('moment')
+'use strict';
+const moment = require('moment');
 
 // 用户表
 module.exports = app => {
-  const { Sequelize } = app
+  const { Sequelize } = app;
   // 定义表模型
   const User = app.model.define('user', {
     id: {
@@ -18,7 +18,7 @@ module.exports = app => {
       comment: '用户名称',
       set(student_name) {
         // 转换为小写
-        this.setDataValue('student_name', student_name.toString().toLowerCase())
+        this.setDataValue('student_name', student_name.toString().toLowerCase());
       },
     },
     type: {
@@ -36,21 +36,21 @@ module.exports = app => {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       get() {
-        return moment(this.getDataValue('create_time')).format('YYYY-MM-DD HH:mm:ss')
+        return moment(this.getDataValue('create_time')).format('YYYY-MM-DD HH:mm:ss');
       },
     },
     update_time: {
       type: Sequelize.DATE,
       defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
     },
-  })
+  });
 
   // 创建表间关系
   User.associate = () => {
     // app.model.Student.belongsTo(app.model.StudentInfo, { foreignKey: 'sid' });
     // 由于是将student的主键，保存到studentInfo中，所以要用hasOne，foreignKey是添加到studentInfo中的外键名称
-    app.model.User.hasOne(app.model.UserOperate, { foreignKey: 'sid' })
-  }
+    app.model.User.hasOne(app.model.UserOperate, { foreignKey: 'sid' });
+  };
 
-  return User
-}
+  return User;
+};

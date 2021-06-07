@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
-const { Service } = require('egg')
+const { Service } = require('egg');
 
 class BaseDaoService extends Service {
   async addRecord(params, option) {
-    const res = await this.model.create(params, option)
-    return res
+    const res = await this.model.create(params, option);
+    return res;
   }
 
   async getOneRecord(where, attributes) {
@@ -13,10 +13,10 @@ class BaseDaoService extends Service {
       where,
       attributes,
       raw: true,
-    })
+    });
 
-    return res
+    return res;
   }
 }
 
-module.exports = BaseDaoService
+module.exports = BaseDaoService;

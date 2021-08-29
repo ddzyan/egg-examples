@@ -3,18 +3,17 @@
 // helper 扩张
 
 module.exports = {
-
   // 返回一个随机数
   getRandom() {
     return Math.floor(Math.random() * 100000 + 1);
   },
 
   /**
-  * @description redis加锁
-  * @param {string} key 加锁key
-  * @param {number} [expire=60]  - 过期时间，防止死锁
-  * @return {string|boolean} true 加锁成功，false加锁失败
-  */
+   * @description redis加锁
+   * @param {string} key 加锁key
+   * @param {number} [expire=60]  - 过期时间，防止死锁
+   * @return {string|boolean} true 加锁成功，false加锁失败
+   */
   async lockRedis(key, expire = 60) {
     const { app } = this;
     const lockValue = Date.now().toString();
@@ -53,5 +52,14 @@ module.exports = {
   async unlockRedis(key) {
     const lockKey = `LOCK:${key}`;
     await this.app.redis.del(lockKey);
+  },
+
+  // 字符串转对象，转换出错返回{}或者默认值
+  JSONParse(str, defaultResult) {
+    try {
+      return JSON.parse(str);
+    } catch (e) {
+      return defaultResult || {};
+    }
   },
 };

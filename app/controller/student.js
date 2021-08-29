@@ -1,22 +1,35 @@
-'use strict';
+"use strict";
 
-const { Controller } = require('egg');
-
+const Controller = require("../core/base_controller");
+const { createRule, queryRule } = require("../rule/student");
 class StudentController extends Controller {
-
-  // mothod GET 获取全部学生信息
-  async getAllStudentInfo() {
-    const res = await this.ctx.service.student.getAllStudent();
-    this.ctx.body = res;
-  }
-
-  // method POST 添加学生
-  async addStudent() {
+  async create() {
     const { ctx } = this;
-    const { student_name, student_type, card_name, card_level } = ctx.request.body;
-    const res = await ctx.service.student.addStudent({ student_name, student_type, card_name, card_level });
-    this.ctx.body = res;
+
+    ctx.validate(createRule);
+
+    const { username, type, status } = ctx.request.body;
+
+    const res = await ctx.service.student.saveNew({
+      username,
+      type,
+      status,
+    });
+
+    this.success(res);
   }
+
+  async get() {
+    const { ctx } = this;
+    ctx.validate(queryRule, ctx.params);
+    const { id } = ctx.params;
+
+    const res = await ctx.service.student.get(id);
+
+    this.success(res);
+  }
+
+  async update() {}
 }
 
 module.exports = StudentController;

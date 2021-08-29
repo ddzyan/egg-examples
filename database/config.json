@@ -2,25 +2,29 @@
   "development": {
     "username": "root",
     "password": "123456",
-    "database": "egg_sequelize_test_demo",
+    "database": "demo",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "migrationStorage": "json",
+    "migrationStoragePath": "sequelizeMeta.json",
+    "migrationStorageTableName": "sequelize_meta",
+
+    "seederStorage": "json",
+    "seederStoragePath": "sequelizeData.json",
+    "seederStorageTableName": "sequelize_data"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "database_test",
+    "database": "demo",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "database_production",
+    "database": "demo",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   }
 }

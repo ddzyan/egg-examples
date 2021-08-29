@@ -1,38 +1,19 @@
-'use strict';
+"use strict";
 
-const Controller = require('egg').Controller;
+const Controller = require("../core/base_controller");
 
 class UserController extends Controller {
-  // 保存用户
-  async saveUser() {
+  async login() {
     const { ctx } = this;
-    const params = ctx.request.body;
-    const res = await ctx.service.user.saveUser(params);
-    ctx.body = res;
+
+    const result = { name: "admin", userType: "1" };
+    ctx.setToken(result);
+    this.success(result);
   }
 
-  // 获取用户
-  async getUser() {
-    const { ctx } = this;
-    const { username } = ctx.query;
-    const res = await ctx.service.user.getUser(username);
-    ctx.body = res;
-  }
-
-  // 重置用户
-  async resetUser() {
-    const { ctx } = this;
-    const { username } = ctx.query;
-    const res = await ctx.service.user.getUser(username);
-    ctx.body = res;
-  }
-
-  // 给用户加钱
-  async setUserMoney() {
-    const { ctx } = this;
-    const { username, money } = ctx.request.body;
-    const res = await ctx.service.user.setUserMoney(username, money);
-    ctx.body = res;
+  logout() {
+    this.ctx.removeToken();
+    this.success();
   }
 }
 

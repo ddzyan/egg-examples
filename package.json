@@ -7,22 +7,26 @@
     "declarations": true
   },
   "dependencies": {
-    "egg": "^2.15.1",
+    "egg": "^2.30.0",
+    "egg-jwt": "^3.1.7",
     "egg-redis": "^2.4.0",
-    "egg-scripts": "^2.11.0",
-    "egg-sequelize": "^5.2.1",
-    "moment": "^2.24.0",
-    "mysql2": "^2.1.0"
+    "egg-scripts": "^2.14.0",
+    "egg-sequelize": "^6.0.0",
+    "egg-validate": "^2.0.2",
+    "fecha": "^4.2.1",
+    "moment": "^2.29.1",
+    "mysql2": "^2.3.0"
   },
   "devDependencies": {
-    "autod": "^3.0.1",
+    "autod": "^3.1.1",
     "autod-egg": "^1.1.0",
-    "egg-bin": "^4.11.0",
-    "egg-ci": "^1.11.0",
-    "egg-mock": "^3.21.0",
-    "eslint": "^5.13.0",
-    "eslint-config-egg": "^7.1.0",
-    "sequelize-cli": "^5.5.1"
+    "egg-bin": "^4.16.4",
+    "egg-ci": "^1.18.0",
+    "egg-mock": "^3.26.0",
+    "eslint": "^7.32.0",
+    "eslint-config-egg": "^9.0.0",
+    "prettier": "^2.3.2",
+    "sequelize-cli": "^6.2.0"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -38,16 +42,29 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "db:undo:all": "npx sequelize db:migrate:undo:all",
-    "db:migrate": "npx sequelize db:migrate"
+    "db:init": "npx sequelize migration:generate --name",
+    "db:up": "npx sequelize db:migrate",
+    "db:down": "npx sequelize db:migrate:undo",
+    "db:down-all": "npx sequelize db:migrate:undo:all"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint . --fix",
+      "git add"
+    ]
   },
   "ci": {
     "version": "10"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ddzyan/egg-examples.git"
   },
-  "author": "ddz",
+  "author": "ddzyan@163.com",
   "license": "MIT"
 }

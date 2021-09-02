@@ -1,25 +1,21 @@
-'use strict';
+"use strict";
 
 /** @type Egg.EggPlugin */
 module.exports = {
   sequelize: {
     enable: true,
-    package: 'egg-sequelize',
+    package: "egg-sequelize",
   },
   redis: {
     enable: false,
-    package: 'egg-redis',
+    package: "egg-redis",
   },
   validate: {
     enable: true,
-    package: 'egg-validate',
+    package: "egg-validate",
   },
   jwt: {
     enable: true,
-    package: 'egg-jwt',
-  },
-  routerPlus: {
-    enable: true,
-    package: 'egg-router-plus',
+    package: "egg-jwt",
   },
 };

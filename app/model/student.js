@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 // 用户表
-module.exports = (app) => {
-  const studentSchema = require("../schema/student")(app);
+module.exports = app => {
+  const studentSchema = require('../schema/student')(app);
   // 定义表模型
-  const Student = app.model.define("student", studentSchema);
+  const Student = app.model.define('student', studentSchema);
 
   // 创建表间关系
   Student.associate = () => {};
@@ -15,7 +15,7 @@ module.exports = (app) => {
     });
   };
 
-  Student.saveNew = async (student) => {
+  Student.saveNew = async student => {
     const result = await Student.create(student);
     return result.id;
   };

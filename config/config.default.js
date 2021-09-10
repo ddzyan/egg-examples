@@ -30,6 +30,7 @@ module.exports = appInfo => {
         timestamps: true,
         createdAt: 'createdTime',
         updatedAt: 'updatedTime',
+        deletedAt: 'deletedTime',
         // paranoid: false, //  删除时不删除数据，而更新deleteAt
         underscored: false, // 不使用驼峰法自动添加属性，而是用_
         freezeTableName: true, // 不是用复数表名

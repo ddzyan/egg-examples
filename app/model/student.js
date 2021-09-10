@@ -6,6 +6,12 @@ module.exports = app => {
   class Student extends Model {
     static async getDetail({ id, attributes }) {
       const result = await Student.findByPk(id, {
+        include: [
+          {
+            model: app.model.Classroom,
+            attributes: [ 'grade', 'classNumber', 'className' ],
+          },
+        ],
         attributes,
       });
 
@@ -16,9 +22,15 @@ module.exports = app => {
       const result = await Student.create(student);
       return result.id;
     }
-
-    associate() {}
   }
+
+  Student.associate = function() {
+    Student.belongsTo(app.model.Classroom, {
+      foreignKey: 'id',
+      targetKey: 'studentId',
+    });
+  };
+
   const studentSchema = require('../schema/student')(app);
   Student.init(studentSchema, {
     sequelize: app.model,

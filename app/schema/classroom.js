@@ -12,29 +12,28 @@ module.exports = app => {
       autoIncrement: true,
       comment: '主键',
     },
-    username: {
+    studentId: {
+      type: Sequelize.INTEGER(11).UNSIGNED,
+      allowNull: false,
+      comment: '学生id',
+    },
+    className: {
       type: Sequelize.STRING(10),
       allowNull: false,
-      comment: '用户名称',
-      set(username) {
-        this.setDataValue('username', username.toString().toLowerCase());
+      comment: '班级名称',
+      set(className) {
+        this.setDataValue('className', className.trim());
       },
     },
-    type: {
-      type: Sequelize.INTEGER(1).UNSIGNED,
+    grade: {
+      type: Sequelize.INTEGER(2).UNSIGNED,
       allowNull: false,
-      default: 1,
-      comment: '类型:1小学生，2中学生,3高中生',
-      get() {
-        const type = this.getDataValue('type');
-        return StudentType[type - 1] || '配置错误';
-      },
+      comment: '年级',
     },
-    status: {
-      type: Sequelize.BOOLEAN, // 1返回true，0返回false
+    classNumber: {
+      type: Sequelize.INTEGER(2).UNSIGNED,
       allowNull: false,
-      default: 1,
-      comment: '状态值:1启用 0 关闭',
+      comment: '班级',
     },
     createdTime: {
       type: Sequelize.DATE,

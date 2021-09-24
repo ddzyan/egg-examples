@@ -1,4 +1,5 @@
 'use strict';
+
 // 用户表
 module.exports = app => {
   const { Model } = app.Sequelize;

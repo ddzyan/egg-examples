@@ -1,17 +1,9 @@
 'use strict';
-
-const StudentType = [ '小学生', '中学生', '高中生' ];
+const db = require('../database/db');
 
 module.exports = app => {
   const { Sequelize } = app;
-
-  return {
-    id: {
-      type: Sequelize.INTEGER(11).UNSIGNED,
-      primaryKey: true,
-      autoIncrement: true,
-      comment: '主键',
-    },
+  return db.defineModel(app, {
     studentId: {
       type: Sequelize.INTEGER(11).UNSIGNED,
       allowNull: false,
@@ -35,20 +27,5 @@ module.exports = app => {
       allowNull: false,
       comment: '班级',
     },
-    createdTime: {
-      type: Sequelize.DATE,
-      allowNull: false,
-      comment: '创建时间',
-    },
-    updatedTime: {
-      type: Sequelize.DATE,
-      allowNull: false,
-      comment: '更新时间',
-    },
-    deletedTime: {
-      type: Sequelize.DATE,
-      allowNull: true,
-      comment: '删除时间',
-    },
-  };
+  });
 };

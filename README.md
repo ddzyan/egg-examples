@@ -4,6 +4,7 @@
 
 ## 更新记录
 
+- 【2021-10-1】 完成 VSCode egg-template-generator 插件开发，方便快速生成 controller,model,service 等代码模板文件
 - 【2021-09-11】 重新优化 Model 的写法，实现在使用时候的代码提示
 - 【2021-09-11】 修复在使用 Model.init 时候，associate 函数不执行 BUG
 

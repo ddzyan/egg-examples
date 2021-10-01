@@ -3,7 +3,6 @@
 // 用户表
 module.exports = app => {
   const { Model } = app.Sequelize;
-
   class Student extends Model {
     static async getDetail({ id, attributes }) {
       const result = await Student.findByPk(id, {

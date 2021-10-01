@@ -1,5 +1,5 @@
 'use strict';
-const db = require('../database/db');
+const db = require('../core/base_schema');
 
 module.exports = app => {
   const { Sequelize } = app;

@@ -1,5 +1,5 @@
 'use strict';
-const db = require('../database/db');
+const db = require('../core/base_schema');
 
 const StudentType = [ '小学生', '中学生', '高中生' ];
 

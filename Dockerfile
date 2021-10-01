@@ -1,7 +1,7 @@
 # 因为要搭建监测平台使用的是alinode,对标的nodejs版本是node.js v12.
 FROM registry.cn-hangzhou.aliyuncs.com/aliyun-node/alinode:5.15.0-alpine
 
-LABEL maintainer="dingdongzhao<ddzyan163.com>"
+LABEL maintainer="dingdongzhao<ddzyan@163.com>"
 
 # 这个是容器中的文件目录
 RUN mkdir -p /usr/src/node-egg/egg-examples

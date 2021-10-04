@@ -40,41 +40,6 @@ module.exports = {
     return new Date(time + oneDayTime * count);
   },
 
-  // 获取排序条件数组
-  getSortInfo(sort) {
-    return _.isEmpty(sort) ? [[ 'createdTime', 'DESC' ]] : sort;
-  },
-  // create所需的一些公共字段
-  getCrateInfo(creatorId, creatorName) {
-    return {
-      creatorId,
-      creatorName,
-      lastModifierId: creatorId,
-      lastModifierName: creatorName,
-    };
-  },
-  // modify所需的一些公共字段
-  getModifyInfo(modifyId, modifyName) {
-    return {
-      lastModifierId: modifyId || 'system',
-      lastModifierName: modifyName || 'system',
-    };
-  },
-
-  // 事务
-  async transaction() {
-    if (!this[TRANSACTION]) {
-      this[TRANSACTION] = await this.model.transaction();
-    }
-    return this[TRANSACTION];
-  },
-  getTransaction() {
-    return this[TRANSACTION];
-  },
-  deleteTransaction() {
-    this[TRANSACTION] = null;
-  },
-
   // 单号生成，暂时是日期+6位
   async getBillNumber(prefix) {
     const dateStr = fecha.format(new Date(), 'YYYYMMDD');
@@ -103,17 +68,6 @@ module.exports = {
     }
   },
 
-  // 任务处理
-  registerTaskHandler(type, handler) {
-    if (!type) {
-      throw new Error('type不能为空');
-    }
-    if (!_.isFunction(handler)) {
-      throw new Error('handler类型非function');
-    }
-    handlers[type] = handler;
-    events[type] = true;
-  },
   // 创建延迟任务
   addDelayTask(type, id, body = {}, delay = 3600) {
     const key = `${delayEventKeyPrefix}${type}_${id}`;
@@ -159,5 +113,23 @@ module.exports = {
         }
       }
     });
+  },
+
+  // 执行sql
+  async execSql(func) {
+    try {
+      const res = await func;
+      return res;
+    } catch (error) {
+      const { message, sql, stack, parameters, name } = error;
+      this.logger.error('sql执行失败 %O', {
+        name,
+        message,
+        sql,
+        parameters,
+        stack,
+      });
+      throw error;
+    }
   },
 };

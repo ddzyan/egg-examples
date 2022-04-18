@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-const Controller = require("../core/base_controller");
-const studentRule= require("../rule/student");
+const Controller = require('../core/base_controller');
+const studentRule = require('../rule/student');
 
 class StudentController extends Controller {
   async create() {
@@ -29,8 +29,6 @@ class StudentController extends Controller {
 
     this.success(res);
   }
-
-  async update() {}
 }
 
 module.exports = StudentController;

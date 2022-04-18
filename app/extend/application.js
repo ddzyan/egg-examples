@@ -8,8 +8,6 @@ const events = {}; // 任务类型map
 const tasks = {}; // 任务列表
 const delayEventKeyPrefix = 'delay_event_'; // 定时任务key前缀
 
-const TRANSACTION = Symbol('Application#transaction');
-
 module.exports = {
   _,
   dayFormat: '%Y-%m-%d',

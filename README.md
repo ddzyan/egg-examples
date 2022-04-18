@@ -1,3 +1,5 @@
+![单元测试](https://github.com/ddzyan/egg-examples/workflows/Nodejs/badge.svg)
+
 # egg-examples
 
 日常在 eggjs 上进行业务开发时，将通用配置或者方法进行沉淀，方便日后使用，提高开发效率
